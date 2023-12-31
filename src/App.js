@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import UserShow from './UserShow'
+const App = () => {
+  const user = [
+    { id: 1, name: "Shuja", work: "Senior-developer" },
+    { id: 2, name: "Arshman", work: "junior-developer" },
+    { id: 3, name: "Ahsan", work: "developer" }
+  ]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<div>
+              {user.map((item) => (
+                <Link to={"/user/" + item.id + "/" + item.name + "/" + item.work}>
+                  {item.name}
+                </Link>
+              ))}
+            </div>} />
+            <Route path="/user/:id/:name/:work" element={<UserShow />} />
+
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
