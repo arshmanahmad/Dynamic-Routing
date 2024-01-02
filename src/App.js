@@ -15,7 +15,7 @@ const App = () => {
             <Route path="/" element={<div>
               {user.map((item) => (
                 <Link to={"/user/" + item.id + "/" + item.name + "/" + item.work}>
-                  {item.name}
+                  <h2>{item.name}</h2>
                 </Link>
               ))}
             </div>} />
